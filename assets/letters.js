@@ -1,6 +1,6 @@
 /**
 * ASCII Representation of Letters
-* See http://bl.ocks.org/olliebennett/08cdb93c7a144527b7ab
+* See http://www.qrupted.com/
 *
 * Each character is represented by an array of 9 x N 'pixels'
 * (where N can vary as the font is not fixed-width).

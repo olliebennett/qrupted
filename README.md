@@ -1,6 +1,6 @@
 # QRupted - Corrupted QR Codes with Text Overlay.
 
-See it in action at [QRupted.com](http://qrupted.com/)!
+See it in action at [QRupted.com](http://www.qrupted.com/)!
 
 ## Idea
 

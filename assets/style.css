@@ -1,0 +1,19 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+	margin-top: 3%;
+}
+
+#qr-container {
+	height: 370px;
+}
+
+#qr {
+	margin: 10px;
+}
+
+label {
+	cursor: pointer;
+}

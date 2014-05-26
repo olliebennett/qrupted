@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>QRupted QR Codes</title>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+
+    <h1>QRupted - Corrupted QR Codes with Text Overlay</h1>
+
+  </header>
+
+  <!-- Form and QR Code -->
+  <div class="row">
+
+    <!-- Form -->
+    <div class="col-md-7 col-sm-5">
+
+      <form class="form-horizontal">
+
+        <legend>Data Storage Information</legend>
+        <div class="form-group">
+          <label for="qr-data" class="col-md-2 control-label">QRCode Embedded Info</label>
+          <div class="col-md-10">
+            <textarea class="form-control" rows="3" id="qr-data" placeholder="Enter the text to store in the QR code">http://olliebennett.co.uk/</textarea>
+          </div>  
+        </div>
+
+        <legend>Overlay Text Options</legend>
+        
+        <div class="form-group">
+          <label for="qr-overlay" class="col-md-2 control-label">Text:</label>
+          <div class="col-md-10">
+              <input type="text" class="form-control" id="qr-overlay" placeholder="Enter a short text to overlay" value="OLLIE">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="qr-format-canvas" class="col-md-2 control-label">Format:</label>
+        <div class="col-md-10">
+        <label class="radio-inline">
+          <input type="radio" id="qr-format-canvas" name="qr-format" value="canvas" checked> Canvas
+        </label>
+        <label class="radio-inline">
+          <input type="radio" id="qr-format-div" name="qr-format" value="div"> HTML (DIV)
+        </label>
+        <label class="radio-inline">
+          <input type="radio" id="qr-format-image" name="qr-format" value="image"> Image
+        </label>
+        </div>
+        </div>
+
+        <div class="form-group checkbox">
+          <div class="col-md-offset-2 col-md-10">
+            <label>
+              <input type="checkbox" id="qr-overlay-border" checked /> Show Border Around Text
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group checkbox">
+          <div class="col-md-offset-2 col-md-10">
+            <label>
+              <input type="checkbox" id="qr-overlay-transparency" /> Transparent Overlay Text
+            </label>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+    <!-- QR Code -->
+    <div class="col-md-5 col-sm-7" id="qr-container">
+
+      <div id="qr"></div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+
+    <div class="alert alert-danger" id="error-container">
+      <p>An error occurred: <span id="error-msg"></span></p>
+    </div>
+
+
+    <div class="alert alert-warning">
+      <p>Remember to verify your QR Code still works (check it with your phone)!</p>
+      <p>If broken, try enabling transparency and/or removing the border of the overlay text. Your overlayed text may also be too long.</p>
+    </div>
+
+    <div class="alert alert-info">
+      <p><span>Created by <a href="http://olliebennett.co.uk/">Ollie Bennett</a>.</span><span class="pull-right">Fork the code on <a href="https://github.com/olliebennett/qrupted">GitHub</a> &rarr;</span></p>
+    </div>
+
+</div><!-- .container -->
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="assets/letters.js"></script>
+<script src="assets/qrcode.js"></script>
+
+<script>
+
+//console.log("Letters:");
+//console.log(letters);
+
+$("textarea, input").on("change keyup", function() {
+update_qrcode();
+});
+
+var update_qrcode = function() {
+
+  var size = 350;
+
+  $("#error-container").hide();
+  $("#qr").empty();
+  $("#qr").qrcode({
+    render: $("input[name=qr-format]:checked").val(),
+    width: size,
+    height: size,
+    size: size,
+    color: '#3a3',
+    text: $("#qr-data").val(),
+    textOverlay: $("#qr-overlay").val(),
+    textOverlayTransparency: !!! $("#qr-overlay-transparency").is(':checked'),
+    textOverlayBorder: $("#qr-overlay-border").is(':checked'),
+    ecLevel: 'H',
+    minVersion: 5
+  });
+
+}
+
+update_qrcode();
+
+</script>

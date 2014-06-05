@@ -33,53 +33,68 @@
 
       <form class="form-horizontal">
 
-        <legend>Data Storage Information</legend>
-        <div class="form-group">
-          <label for="qr-data" class="col-md-2 control-label">QRCode Embedded Info</label>
-          <div class="col-md-10">
-            <textarea class="form-control" rows="3" id="qr-data" placeholder="Enter the text to store in the QR code">http://olliebennett.co.uk/</textarea>
-          </div>  
-        </div>
+        <fieldset>
 
-        <legend>Overlay Text Options</legend>
+          <legend>Data Storage Information</legend>
+
+          <div class="form-group">
+            <label for="qr-data" class="col-md-2 control-label">QRCode Embedded Info</label>
+            <div class="col-md-10">
+              <textarea class="form-control" rows="3" id="qr-data" placeholder="Enter the text to store in the QR code">http://olliebennett.co.uk/</textarea>
+            </div>  
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+
+          <legend>Overlay Text Options</legend>
         
-        <div class="form-group">
-          <label for="qr-overlay" class="col-md-2 control-label">Text:</label>
-          <div class="col-md-10">
-              <input type="text" class="form-control" id="qr-overlay" placeholder="Enter a short text to overlay" value="OLLIE">
+          <div class="form-group">
+            <label for="qr-overlay" class="col-md-2 control-label">Text:</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="qr-overlay" placeholder="Enter a short text to overlay" value="OLLIE">
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="qr-format-canvas" class="col-md-2 control-label">Format:</label>
-        <div class="col-md-10">
-        <label class="radio-inline">
-          <input type="radio" id="qr-format-canvas" name="qr-format" value="canvas" checked> Canvas
-        </label>
-        <label class="radio-inline">
-          <input type="radio" id="qr-format-div" name="qr-format" value="div"> HTML (DIV)
-        </label>
-        <label class="radio-inline">
-          <input type="radio" id="qr-format-image" name="qr-format" value="image"> Image
-        </label>
-        </div>
-        </div>
+          <div class="form-group checkbox">
+            <div class="col-md-offset-2 col-md-10">
+              <label>
+                <input type="checkbox" id="qr-overlay-border" checked /> Show Border Around Text
+              </label>
+            </div>
+          </div>
 
-        <div class="form-group checkbox">
-          <div class="col-md-offset-2 col-md-10">
-            <label>
-              <input type="checkbox" id="qr-overlay-border" checked /> Show Border Around Text
+          <div class="form-group checkbox">
+            <div class="col-md-offset-2 col-md-10">
+              <label>
+                <input type="checkbox" id="qr-overlay-transparency" /> Transparent Overlay Text
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+
+          <legend>Advanced Options</legend>
+
+          <div class="form-group">
+            <label for="qr-format-canvas" class="col-md-2 control-label">Format:</label>
+            <div class="col-md-10">
+            <label class="radio-inline">
+              <input type="radio" id="qr-format-canvas" name="qr-format" value="canvas" checked> Canvas
             </label>
-          </div>
-        </div>
-
-        <div class="form-group checkbox">
-          <div class="col-md-offset-2 col-md-10">
-            <label>
-              <input type="checkbox" id="qr-overlay-transparency" /> Transparent Overlay Text
+            <label class="radio-inline">
+              <input type="radio" id="qr-format-div" name="qr-format" value="div"> HTML (DIV)
             </label>
+            <label class="radio-inline">
+              <input type="radio" id="qr-format-image" name="qr-format" value="image"> Image
+            </label>
+            </div>
           </div>
-        </div>
+
+        </fieldset>
 
       </form>
 

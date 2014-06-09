@@ -136,6 +136,9 @@
 //console.log("Letters:");
 //console.log(letters);
 
+// Disable form submission (eg. via Enter key)
+$('form').submit(false);
+
 $("textarea, input").on("change keyup", function() {
 update_qrcode();
 });

@@ -300,7 +300,7 @@
 		},
 
 		showError = function (errorMsg) {
-			console.error(errorMsg);
+			//console.error(errorMsg);
 			$("#error-msg").html(errorMsg);
 			$("#error-container").show();
 		},

@@ -323,11 +323,15 @@
 			var size = originalDataArray.length;
 			//console.log("Adding overlay to array with size: " + size);
 
+			// Get symbol height from any element
+			var symbol_height = settings.symbols["A"].length;
+			//console.log("Symbol height: " + symbol_height);
+
 			var word_ASCII_length = 0;
 			for ( var word_cursor = 0; word_cursor < word.length; word_cursor++ ) {
 
 				var letter = word[word_cursor];
-				var letter_ascii = letters[letter];
+				var letter_ascii = settings.symbols[letter];
 				if (typeof letter_ascii === "undefined") {
 					showError("Invalid letter '<b>" + letter + "</b>' - no ASCII defined for this character.");
 					return originalDataArray;
@@ -335,7 +339,7 @@
 				//console.log("Letter: " + letter + " ( len = " + letter_ascii[0].length + ").");
 				word_ASCII_length += letter_ascii[0].length + padding;
 
-				// If not the last letter, move back (left) one space to avoid double padding between letters.
+				// If not the last letter, move back (left) one space to avoid double padding between symbols.
 				if (word_cursor >= 1 && word_cursor <= word.length - 1) {
 					word_ASCII_length--;
 				}
@@ -353,7 +357,7 @@
 			for ( var word_cursor = 0; word_cursor < word.length; word_cursor++ ) {
 
 				//console.log("Processing pixels for letter '" + word[word_cursor] + "'.");
-				var letter_ascii = letters[word[word_cursor]];
+				var letter_ascii = settings.symbols[word[word_cursor]];
 
 				// Replace 'pixels' as needed from ASCII arrays.
 				for (var pixel_x = 0; pixel_x < letter_ascii[0].length; pixel_x ++) {
@@ -381,7 +385,7 @@
 			// Add a border, if required.
 			if (showBorder && word.length >= 1) {
 				var x_range = [start_x - 1, start_x + word_ASCII_length];
-				var y_range = [start_y - 1, start_y + 2*padding + 9];
+				var y_range = [start_y - 1, start_y + 2*padding + symbol_height];
 				//console.log("showing border");
 				for (var x = x_range[0]; x <= x_range[1]; x++) {
 					for (var y = y_range[0]; y <= y_range[1]; y++) {

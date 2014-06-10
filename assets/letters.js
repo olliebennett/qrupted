@@ -14,7 +14,9 @@
 * 
 */
 
-var letters = {
+var symbols = symbols || {};
+
+symbols["letters"] = {
 
 	// Numbers
 

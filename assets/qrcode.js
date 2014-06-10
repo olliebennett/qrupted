@@ -333,7 +333,16 @@
 				var letter = word[word_cursor];
 				var letter_ascii = settings.symbols[letter];
 				if (typeof letter_ascii === "undefined") {
-					showError("Invalid letter '<b>" + letter + "</b>' - no ASCII defined for this character.");
+					var errMsg = "Invalid symbol '<b>" + letter + "</b>' - no ASCII defined for this character."
+					errMsg += "<br />Use only <code>";
+					var keys = Object.keys(settings.symbols);
+					for (var i = 0; i <= keys.length; i++) {
+						if (typeof keys[i] !== "undefined") {
+							errMsg += keys[i];
+						}
+					}
+					errMsg += "</code>.";
+					showError(errMsg);
 					return originalDataArray;
 				}
 				//console.log("Letter: " + letter + " ( len = " + letter_ascii[0].length + ").");

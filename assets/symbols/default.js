@@ -16,7 +16,7 @@
 
 var symbols = symbols || {};
 
-symbols["letters"] = {
+symbols["default"] = {
 
 	// Numbers
 

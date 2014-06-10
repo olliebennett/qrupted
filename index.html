@@ -56,6 +56,15 @@
                 <input type="text" class="form-control" id="qr-overlay" placeholder="Enter a short text to overlay" value="OLLIE">
             </div>
           </div>
+        
+          <div class="form-group">
+            <label for="qr-overlay" class="col-md-2 control-label">Font:</label>
+            <div class="col-md-10">
+              <select class="form-control" id="qr-overlay-font">
+                <option value="default">Default</option>
+              </select>
+            </div>
+          </div>
 
           <div class="form-group checkbox">
             <div class="col-md-offset-2 col-md-10">
@@ -128,7 +137,7 @@
 </div><!-- .container -->
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="assets/letters.js"></script>
+<script src="assets/symbols/default.js"></script>
 <script src="assets/qrcode.js"></script>
 
 <script>
@@ -139,7 +148,7 @@
 // Disable form submission (eg. via Enter key)
 $('form').submit(false);
 
-$("textarea, input").on("change keyup", function() {
+$("textarea, input, select").on("change keyup", function() {
 update_qrcode();
 });
 
@@ -161,7 +170,7 @@ var update_qrcode = function() {
     textOverlayBorder: $("#qr-overlay-border").is(':checked'),
     ecLevel: 'H',
     minVersion: 5,
-    symbols: symbols["letters"]
+    symbols: symbols[$("#qr-overlay-font").val()]
   });
 
 }

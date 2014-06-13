@@ -138,50 +138,122 @@
 </div><!-- .container -->
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="assets/lib/jquery.deparam.js"></script>
 <script src="assets/symbols/default.js"></script>
 <script src="assets/symbols/small_caps.js"></script>
 <script src="assets/qrcode.js"></script>
 
 <script>
 
-//console.log("Letters:");
-//console.log(letters);
-
 // Disable form submission (eg. via Enter key)
 $('form').submit(false);
 
+// Add event listeners on form elements
 $("textarea, input, select").on("change keyup", function() {
-update_qrcode();
+  form_change();
 });
 
-var update_qrcode = function() {
+var data_read = function() {
+
+  // Prepare data
+  return {
+    
+    // Information
+    i: $("#qr-data").val(),
+
+    // Overlay
+    o: $("#qr-overlay").val(),
+    // Overlay Transparency
+    ot: !!! $("#qr-overlay-transparency").is(':checked'),
+    // Overlay Border
+    ob: $("#qr-overlay-border").is(':checked'),
+    // Overlay Font
+    of: $("#qr-overlay-font").val(),
+
+    // Render type
+    r: $("input[name=qr-format]:checked").val()
+
+  };
+
+};
+
+var data_write = function(data) {
+
+  // Information
+  $("#qr-data").val(data.i);
+
+  // Overlay
+  $("#qr-overlay").val(data.o);
+  // Overlay Transparency
+  //ot: !!! $("#qr-overlay-transparency").is(':checked');
+  // Overlay Border
+  //ob: $("#qr-overlay-border").is(':checked');
+  // Overlay Font
+  $("#qr-overlay-font").val(data.of);
+
+  // Render type
+  $("input[name=qr-format]:checked").val(data.r);
+
+};
+
+var form_change = function() {
+
+  var data = data_read();
+  update_qrcode(data);
+  hash_save(data);
+
+};
+
+var update_qrcode = function(data) {
 
   var size = 350;
 
   $("#error-container").hide();
   $("#qr").empty();
   $("#qr").qrcode({
-    render: $("input[name=qr-format]:checked").val(),
+    render: data.r,
     width: size,
     height: size,
     size: size,
     color: '#3a3',
-    text: $("#qr-data").val(),
-    textOverlay: $("#qr-overlay").val(),
-    textOverlayTransparency: !!! $("#qr-overlay-transparency").is(':checked'),
-    textOverlayBorder: $("#qr-overlay-border").is(':checked'),
+    text: data.i,
+    textOverlay: data.o,
+    textOverlayTransparency: data.ot,
+    textOverlayBorder: data.ob,
     ecLevel: 'H',
     minVersion: 5,
-    symbols: symbols[$("#qr-overlay-font").val()]
+    symbols: symbols[data.of]
   });
 
-}
+};
 
-update_qrcode();
+var hash_save = function(data) {
+
+  window.location.hash = $.param(data);
+
+};
+
+var hash_load = function() {
+
+  // The .substr(1) removes the "#".
+  var data = $.deparam(window.location.hash.substr(1));
+
+  if ( !!! $.isEmptyObject(data)) {
+    data_write(data);
+  }
+
+};
+
+// Load any (bookmarked) hash data.
+hash_load();
+
+// Trigger initial form change.
+form_change();
 
 </script>
 
 <script>
+
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

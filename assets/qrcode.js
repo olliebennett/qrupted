@@ -3,7 +3,7 @@
 // Uses [QR Code Generator](http://www.d-project.com/qrcode/index.html) (MIT), appended to the end of this file.
 // Kudos to [jquery.qrcode.js](http://github.com/jeromeetienne/jquery-qrcode) (MIT).
 
-// Changes by Ollie Bennett (http://olliebennett.co.uk/) to allow text insertion.
+// Changes by Ollie Bennett (https://www.olliebennett.co.uk/) to allow text insertion.
 
 (function ($) {
 	'use strict';

@@ -49,14 +49,14 @@
         <fieldset>
 
           <legend>Overlay Text Options</legend>
-        
+
           <div class="form-group">
             <label for="qr-overlay" class="col-md-2 control-label">Text:</label>
             <div class="col-md-10">
                 <input type="text" class="form-control" id="qr-overlay" placeholder="Enter a short text to overlay" value="OLLIE">
             </div>
           </div>
-        
+
           <div class="form-group">
             <label for="qr-overlay" class="col-md-2 control-label">Font:</label>
             <div class="col-md-10">
@@ -141,45 +141,7 @@
 <script src="assets/symbols/default.js"></script>
 <script src="assets/symbols/small_caps.js"></script>
 <script src="assets/qrcode.js"></script>
-
-<script>
-
-//console.log("Letters:");
-//console.log(letters);
-
-// Disable form submission (eg. via Enter key)
-$('form').submit(false);
-
-$("textarea, input, select").on("change keyup", function() {
-update_qrcode();
-});
-
-var update_qrcode = function() {
-
-  var size = 350;
-
-  $("#error-container").hide();
-  $("#qr").empty();
-  $("#qr").qrcode({
-    render: $("input[name=qr-format]:checked").val(),
-    width: size,
-    height: size,
-    size: size,
-    color: '#3a3',
-    text: $("#qr-data").val(),
-    textOverlay: $("#qr-overlay").val(),
-    textOverlayTransparency: !!! $("#qr-overlay-transparency").is(':checked'),
-    textOverlayBorder: $("#qr-overlay-border").is(':checked'),
-    ecLevel: 'H',
-    minVersion: 5,
-    symbols: symbols[$("#qr-overlay-font").val()]
-  });
-
-}
-
-update_qrcode();
-
-</script>
+<script src="assets/script.js"></script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -28,4 +28,31 @@ const updateQrCode = function () {
   })
 }
 
-updateQrCode()
+// https://stackoverflow.com/a/21903119/1323144
+const getUrlParameter = function (sParam) {
+  const sPageURL = window.location.search.substring(1)
+  const sURLVariables = sPageURL.split('&')
+  let sParameterName
+  let i
+
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split('=')
+
+    if (sParameterName[0] === sParam) {
+      return typeof sParameterName[1] === 'undefined' ? true : decodeURIComponent(sParameterName[1])
+    }
+  }
+  return false
+}
+
+// On page load, set data+text from url param if present
+$(function () {
+  const tParam = getUrlParameter('t')
+  const dParam = getUrlParameter('d')
+  if (tParam) {
+    $('#qr-data').val(dParam)
+    $('#qr-overlay').val(tParam)
+  }
+  // Refresh QR code
+  updateQrCode()
+})
